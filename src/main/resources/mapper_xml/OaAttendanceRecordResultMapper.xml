@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huijianzhu.attendance.mapper.OaAttendanceRecordResultMapper">
+  <resultMap id="BaseResultMap" type="com.huijianzhu.attendance.entity.OaAttendanceRecordResult">
+    <id column="result_id" jdbcType="VARCHAR" property="resultId" />
+    <result column="on_type_id" jdbcType="VARCHAR" property="onTypeId" />
+    <result column="after_type_id" jdbcType="VARCHAR" property="afterTypeId" />
+    <result column="take_time" jdbcType="VARCHAR" property="takeTime" />
+    <result column="record_id" jdbcType="VARCHAR" property="recordId" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user_id" jdbcType="VARCHAR" property="updateUserId" />
+    <result column="update_user_name" jdbcType="VARCHAR" property="updateUserName" />
+    <result column="r1" jdbcType="VARCHAR" property="r1" />
+    <result column="r2" jdbcType="VARCHAR" property="r2" />
+    <result column="r3" jdbcType="VARCHAR" property="r3" />
+    <result column="r4" jdbcType="VARCHAR" property="r4" />
+    <result column="r5" jdbcType="VARCHAR" property="r5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    result_id, on_type_id, after_type_id, take_time, record_id, is_delete, create_time, 
+    update_time, update_user_id, update_user_name, r1, r2, r3, r4, r5
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from oa_attendance_record_result
+    where result_id = #{resultId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from oa_attendance_record_result
+    where result_id = #{resultId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huijianzhu.attendance.entity.OaAttendanceRecordResult">
+    insert into oa_attendance_record_result (result_id, on_type_id, after_type_id, 
+      take_time, record_id, is_delete, 
+      create_time, update_time, update_user_id, 
+      update_user_name, r1, r2, 
+      r3, r4, r5)
+    values (#{resultId,jdbcType=VARCHAR}, #{onTypeId,jdbcType=VARCHAR}, #{afterTypeId,jdbcType=VARCHAR}, 
+      #{takeTime,jdbcType=VARCHAR}, #{recordId,jdbcType=VARCHAR}, #{isDelete,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=VARCHAR}, 
+      #{updateUserName,jdbcType=VARCHAR}, #{r1,jdbcType=VARCHAR}, #{r2,jdbcType=VARCHAR}, 
+      #{r3,jdbcType=VARCHAR}, #{r4,jdbcType=VARCHAR}, #{r5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huijianzhu.attendance.entity.OaAttendanceRecordResult">
+    insert into oa_attendance_record_result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="resultId != null">
+        result_id,
+      </if>
+      <if test="onTypeId != null">
+        on_type_id,
+      </if>
+      <if test="afterTypeId != null">
+        after_type_id,
+      </if>
+      <if test="takeTime != null">
+        take_time,
+      </if>
+      <if test="recordId != null">
+        record_id,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="updateUserName != null">
+        update_user_name,
+      </if>
+      <if test="r1 != null">
+        r1,
+      </if>
+      <if test="r2 != null">
+        r2,
+      </if>
+      <if test="r3 != null">
+        r3,
+      </if>
+      <if test="r4 != null">
+        r4,
+      </if>
+      <if test="r5 != null">
+        r5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="resultId != null">
+        #{resultId,jdbcType=VARCHAR},
+      </if>
+      <if test="onTypeId != null">
+        #{onTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="afterTypeId != null">
+        #{afterTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="takeTime != null">
+        #{takeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="recordId != null">
+        #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null">
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="r1 != null">
+        #{r1,jdbcType=VARCHAR},
+      </if>
+      <if test="r2 != null">
+        #{r2,jdbcType=VARCHAR},
+      </if>
+      <if test="r3 != null">
+        #{r3,jdbcType=VARCHAR},
+      </if>
+      <if test="r4 != null">
+        #{r4,jdbcType=VARCHAR},
+      </if>
+      <if test="r5 != null">
+        #{r5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huijianzhu.attendance.entity.OaAttendanceRecordResult">
+    update oa_attendance_record_result
+    <set>
+      <if test="onTypeId != null">
+        on_type_id = #{onTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="afterTypeId != null">
+        after_type_id = #{afterTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="takeTime != null">
+        take_time = #{takeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="recordId != null">
+        record_id = #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null">
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="r1 != null">
+        r1 = #{r1,jdbcType=VARCHAR},
+      </if>
+      <if test="r2 != null">
+        r2 = #{r2,jdbcType=VARCHAR},
+      </if>
+      <if test="r3 != null">
+        r3 = #{r3,jdbcType=VARCHAR},
+      </if>
+      <if test="r4 != null">
+        r4 = #{r4,jdbcType=VARCHAR},
+      </if>
+      <if test="r5 != null">
+        r5 = #{r5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where result_id = #{resultId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huijianzhu.attendance.entity.OaAttendanceRecordResult">
+    update oa_attendance_record_result
+    set on_type_id = #{onTypeId,jdbcType=VARCHAR},
+      after_type_id = #{afterTypeId,jdbcType=VARCHAR},
+      take_time = #{takeTime,jdbcType=VARCHAR},
+      record_id = #{recordId,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      r1 = #{r1,jdbcType=VARCHAR},
+      r2 = #{r2,jdbcType=VARCHAR},
+      r3 = #{r3,jdbcType=VARCHAR},
+      r4 = #{r4,jdbcType=VARCHAR},
+      r5 = #{r5,jdbcType=VARCHAR}
+    where result_id = #{resultId,jdbcType=VARCHAR}
+  </update>
+</mapper>

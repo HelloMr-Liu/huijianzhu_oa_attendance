@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huijianzhu.attendance.mapper.OaUserExpandMapper">
+  <resultMap id="BaseResultMap" type="com.huijianzhu.attendance.entity.OaUserExpand">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="is_departure" jdbcType="VARCHAR" property="isDeparture" />
+    <result column="operating_state" jdbcType="VARCHAR" property="operatingState" />
+    <result column="file_id" jdbcType="VARCHAR" property="fileId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="r1" jdbcType="VARCHAR" property="r1" />
+    <result column="r2" jdbcType="VARCHAR" property="r2" />
+    <result column="r3" jdbcType="VARCHAR" property="r3" />
+    <result column="r4" jdbcType="VARCHAR" property="r4" />
+    <result column="r5" jdbcType="VARCHAR" property="r5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, is_departure, operating_state, file_id, update_time, r1, r2, r3, r4, r5
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from oa_user_expand
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from oa_user_expand
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huijianzhu.attendance.entity.OaUserExpand">
+    insert into oa_user_expand (user_id, is_departure, operating_state, 
+      file_id, update_time, r1, 
+      r2, r3, r4, r5
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{isDeparture,jdbcType=VARCHAR}, #{operatingState,jdbcType=VARCHAR}, 
+      #{fileId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{r1,jdbcType=VARCHAR}, 
+      #{r2,jdbcType=VARCHAR}, #{r3,jdbcType=VARCHAR}, #{r4,jdbcType=VARCHAR}, #{r5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.huijianzhu.attendance.entity.OaUserExpand">
+    insert into oa_user_expand
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="isDeparture != null">
+        is_departure,
+      </if>
+      <if test="operatingState != null">
+        operating_state,
+      </if>
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="r1 != null">
+        r1,
+      </if>
+      <if test="r2 != null">
+        r2,
+      </if>
+      <if test="r3 != null">
+        r3,
+      </if>
+      <if test="r4 != null">
+        r4,
+      </if>
+      <if test="r5 != null">
+        r5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeparture != null">
+        #{isDeparture,jdbcType=VARCHAR},
+      </if>
+      <if test="operatingState != null">
+        #{operatingState,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        #{fileId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="r1 != null">
+        #{r1,jdbcType=VARCHAR},
+      </if>
+      <if test="r2 != null">
+        #{r2,jdbcType=VARCHAR},
+      </if>
+      <if test="r3 != null">
+        #{r3,jdbcType=VARCHAR},
+      </if>
+      <if test="r4 != null">
+        #{r4,jdbcType=VARCHAR},
+      </if>
+      <if test="r5 != null">
+        #{r5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huijianzhu.attendance.entity.OaUserExpand">
+    update oa_user_expand
+    <set>
+      <if test="isDeparture != null">
+        is_departure = #{isDeparture,jdbcType=VARCHAR},
+      </if>
+      <if test="operatingState != null">
+        operating_state = #{operatingState,jdbcType=VARCHAR},
+      </if>
+      <if test="fileId != null">
+        file_id = #{fileId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="r1 != null">
+        r1 = #{r1,jdbcType=VARCHAR},
+      </if>
+      <if test="r2 != null">
+        r2 = #{r2,jdbcType=VARCHAR},
+      </if>
+      <if test="r3 != null">
+        r3 = #{r3,jdbcType=VARCHAR},
+      </if>
+      <if test="r4 != null">
+        r4 = #{r4,jdbcType=VARCHAR},
+      </if>
+      <if test="r5 != null">
+        r5 = #{r5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huijianzhu.attendance.entity.OaUserExpand">
+    update oa_user_expand
+    set is_departure = #{isDeparture,jdbcType=VARCHAR},
+      operating_state = #{operatingState,jdbcType=VARCHAR},
+      file_id = #{fileId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      r1 = #{r1,jdbcType=VARCHAR},
+      r2 = #{r2,jdbcType=VARCHAR},
+      r3 = #{r3,jdbcType=VARCHAR},
+      r4 = #{r4,jdbcType=VARCHAR},
+      r5 = #{r5,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

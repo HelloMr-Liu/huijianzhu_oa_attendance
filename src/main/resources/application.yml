@@ -1,0 +1,13 @@
+#配置端口
+server:
+  port: 8990
+  servlet:
+    context-path: /attendance
+
+spring:
+  servlet:
+    multipart:
+      #单个文件
+      max-file-size: 20MB
+      #上传文件总大小
+      max-request-size: 100MB

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huijianzhu.attendance.mapper.OaAttendanceTimeMapper">
+  <resultMap id="BaseResultMap" type="com.huijianzhu.attendance.entity.OaAttendanceTime">
+    <id column="time_id" jdbcType="INTEGER" property="timeId" />
+    <result column="time_title" jdbcType="VARCHAR" property="timeTitle" />
+    <result column="on_work_time" jdbcType="VARCHAR" property="onWorkTime" />
+    <result column="after_time" jdbcType="VARCHAR" property="afterTime" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user_id" jdbcType="VARCHAR" property="updateUserId" />
+    <result column="update_user_name" jdbcType="VARCHAR" property="updateUserName" />
+    <result column="r1" jdbcType="VARCHAR" property="r1" />
+    <result column="r2" jdbcType="VARCHAR" property="r2" />
+    <result column="r3" jdbcType="VARCHAR" property="r3" />
+    <result column="r4" jdbcType="VARCHAR" property="r4" />
+    <result column="r5" jdbcType="VARCHAR" property="r5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    time_id, time_title, on_work_time, after_time, is_delete, create_time, update_time, 
+    update_user_id, update_user_name, r1, r2, r3, r4, r5
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from oa_attendance_time
+    where time_id = #{timeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from oa_attendance_time
+    where time_id = #{timeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huijianzhu.attendance.entity.OaAttendanceTime">
+    insert into oa_attendance_time (time_id, time_title, on_work_time, 
+      after_time, is_delete, create_time, 
+      update_time, update_user_id, update_user_name, 
+      r1, r2, r3, r4, 
+      r5)
+    values (#{timeId,jdbcType=INTEGER}, #{timeTitle,jdbcType=VARCHAR}, #{onWorkTime,jdbcType=VARCHAR}, 
+      #{afterTime,jdbcType=VARCHAR}, #{isDelete,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=VARCHAR}, #{updateUserName,jdbcType=VARCHAR}, 
+      #{r1,jdbcType=VARCHAR}, #{r2,jdbcType=VARCHAR}, #{r3,jdbcType=VARCHAR}, #{r4,jdbcType=VARCHAR}, 
+      #{r5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huijianzhu.attendance.entity.OaAttendanceTime">
+    insert into oa_attendance_time
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="timeId != null">
+        time_id,
+      </if>
+      <if test="timeTitle != null">
+        time_title,
+      </if>
+      <if test="onWorkTime != null">
+        on_work_time,
+      </if>
+      <if test="afterTime != null">
+        after_time,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="updateUserName != null">
+        update_user_name,
+      </if>
+      <if test="r1 != null">
+        r1,
+      </if>
+      <if test="r2 != null">
+        r2,
+      </if>
+      <if test="r3 != null">
+        r3,
+      </if>
+      <if test="r4 != null">
+        r4,
+      </if>
+      <if test="r5 != null">
+        r5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="timeId != null">
+        #{timeId,jdbcType=INTEGER},
+      </if>
+      <if test="timeTitle != null">
+        #{timeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="onWorkTime != null">
+        #{onWorkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="afterTime != null">
+        #{afterTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null">
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="r1 != null">
+        #{r1,jdbcType=VARCHAR},
+      </if>
+      <if test="r2 != null">
+        #{r2,jdbcType=VARCHAR},
+      </if>
+      <if test="r3 != null">
+        #{r3,jdbcType=VARCHAR},
+      </if>
+      <if test="r4 != null">
+        #{r4,jdbcType=VARCHAR},
+      </if>
+      <if test="r5 != null">
+        #{r5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huijianzhu.attendance.entity.OaAttendanceTime">
+    update oa_attendance_time
+    <set>
+      <if test="timeTitle != null">
+        time_title = #{timeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="onWorkTime != null">
+        on_work_time = #{onWorkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="afterTime != null">
+        after_time = #{afterTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null">
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="r1 != null">
+        r1 = #{r1,jdbcType=VARCHAR},
+      </if>
+      <if test="r2 != null">
+        r2 = #{r2,jdbcType=VARCHAR},
+      </if>
+      <if test="r3 != null">
+        r3 = #{r3,jdbcType=VARCHAR},
+      </if>
+      <if test="r4 != null">
+        r4 = #{r4,jdbcType=VARCHAR},
+      </if>
+      <if test="r5 != null">
+        r5 = #{r5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where time_id = #{timeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huijianzhu.attendance.entity.OaAttendanceTime">
+    update oa_attendance_time
+    set time_title = #{timeTitle,jdbcType=VARCHAR},
+      on_work_time = #{onWorkTime,jdbcType=VARCHAR},
+      after_time = #{afterTime,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      r1 = #{r1,jdbcType=VARCHAR},
+      r2 = #{r2,jdbcType=VARCHAR},
+      r3 = #{r3,jdbcType=VARCHAR},
+      r4 = #{r4,jdbcType=VARCHAR},
+      r5 = #{r5,jdbcType=VARCHAR}
+    where time_id = #{timeId,jdbcType=INTEGER}
+  </update>
+</mapper>

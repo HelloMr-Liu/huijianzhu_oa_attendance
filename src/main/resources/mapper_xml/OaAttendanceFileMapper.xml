@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huijianzhu.attendance.mapper.OaAttendanceFileMapper">
+  <resultMap id="BaseResultMap" type="com.huijianzhu.attendance.entity.OaAttendanceFile">
+    <id column="file_id" jdbcType="VARCHAR" property="fileId" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_path" jdbcType="VARCHAR" property="filePath" />
+    <result column="file_type" jdbcType="VARCHAR" property="fileType" />
+    <result column="uniqueness_id" jdbcType="VARCHAR" property="uniquenessId" />
+    <result column="is_delete" jdbcType="VARCHAR" property="isDelete" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user_id" jdbcType="VARCHAR" property="updateUserId" />
+    <result column="update_user_name" jdbcType="VARCHAR" property="updateUserName" />
+    <result column="r1" jdbcType="VARCHAR" property="r1" />
+    <result column="r2" jdbcType="VARCHAR" property="r2" />
+    <result column="r3" jdbcType="VARCHAR" property="r3" />
+    <result column="r4" jdbcType="VARCHAR" property="r4" />
+    <result column="r5" jdbcType="VARCHAR" property="r5" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.huijianzhu.attendance.entity.OaAttendanceFileWithBLOBs">
+    <result column="base_data1" jdbcType="LONGVARCHAR" property="baseData1" />
+    <result column="base_data2" jdbcType="LONGVARCHAR" property="baseData2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    file_id, file_name, file_path, file_type, uniqueness_id, is_delete, create_time, 
+    update_time, update_user_id, update_user_name, r1, r2, r3, r4, r5
+  </sql>
+  <sql id="Blob_Column_List">
+    base_data1, base_data2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from oa_attendance_file
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from oa_attendance_file
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huijianzhu.attendance.entity.OaAttendanceFileWithBLOBs">
+    insert into oa_attendance_file (file_id, file_name, file_path, 
+      file_type, uniqueness_id, is_delete, 
+      create_time, update_time, update_user_id, 
+      update_user_name, r1, r2, 
+      r3, r4, r5, base_data1, 
+      base_data2)
+    values (#{fileId,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, 
+      #{fileType,jdbcType=VARCHAR}, #{uniquenessId,jdbcType=VARCHAR}, #{isDelete,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=VARCHAR}, 
+      #{updateUserName,jdbcType=VARCHAR}, #{r1,jdbcType=VARCHAR}, #{r2,jdbcType=VARCHAR}, 
+      #{r3,jdbcType=VARCHAR}, #{r4,jdbcType=VARCHAR}, #{r5,jdbcType=VARCHAR}, #{baseData1,jdbcType=LONGVARCHAR}, 
+      #{baseData2,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huijianzhu.attendance.entity.OaAttendanceFileWithBLOBs">
+    insert into oa_attendance_file
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="filePath != null">
+        file_path,
+      </if>
+      <if test="fileType != null">
+        file_type,
+      </if>
+      <if test="uniquenessId != null">
+        uniqueness_id,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="updateUserName != null">
+        update_user_name,
+      </if>
+      <if test="r1 != null">
+        r1,
+      </if>
+      <if test="r2 != null">
+        r2,
+      </if>
+      <if test="r3 != null">
+        r3,
+      </if>
+      <if test="r4 != null">
+        r4,
+      </if>
+      <if test="r5 != null">
+        r5,
+      </if>
+      <if test="baseData1 != null">
+        base_data1,
+      </if>
+      <if test="baseData2 != null">
+        base_data2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        #{fileId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="uniquenessId != null">
+        #{uniquenessId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null">
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="r1 != null">
+        #{r1,jdbcType=VARCHAR},
+      </if>
+      <if test="r2 != null">
+        #{r2,jdbcType=VARCHAR},
+      </if>
+      <if test="r3 != null">
+        #{r3,jdbcType=VARCHAR},
+      </if>
+      <if test="r4 != null">
+        #{r4,jdbcType=VARCHAR},
+      </if>
+      <if test="r5 != null">
+        #{r5,jdbcType=VARCHAR},
+      </if>
+      <if test="baseData1 != null">
+        #{baseData1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="baseData2 != null">
+        #{baseData2,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huijianzhu.attendance.entity.OaAttendanceFileWithBLOBs">
+    update oa_attendance_file
+    <set>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        file_path = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null">
+        file_type = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="uniquenessId != null">
+        uniqueness_id = #{uniquenessId,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null">
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="r1 != null">
+        r1 = #{r1,jdbcType=VARCHAR},
+      </if>
+      <if test="r2 != null">
+        r2 = #{r2,jdbcType=VARCHAR},
+      </if>
+      <if test="r3 != null">
+        r3 = #{r3,jdbcType=VARCHAR},
+      </if>
+      <if test="r4 != null">
+        r4 = #{r4,jdbcType=VARCHAR},
+      </if>
+      <if test="r5 != null">
+        r5 = #{r5,jdbcType=VARCHAR},
+      </if>
+      <if test="baseData1 != null">
+        base_data1 = #{baseData1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="baseData2 != null">
+        base_data2 = #{baseData2,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.huijianzhu.attendance.entity.OaAttendanceFileWithBLOBs">
+    update oa_attendance_file
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      file_type = #{fileType,jdbcType=VARCHAR},
+      uniqueness_id = #{uniquenessId,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      r1 = #{r1,jdbcType=VARCHAR},
+      r2 = #{r2,jdbcType=VARCHAR},
+      r3 = #{r3,jdbcType=VARCHAR},
+      r4 = #{r4,jdbcType=VARCHAR},
+      r5 = #{r5,jdbcType=VARCHAR},
+      base_data1 = #{baseData1,jdbcType=LONGVARCHAR},
+      base_data2 = #{baseData2,jdbcType=LONGVARCHAR}
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huijianzhu.attendance.entity.OaAttendanceFile">
+    update oa_attendance_file
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      file_type = #{fileType,jdbcType=VARCHAR},
+      uniqueness_id = #{uniquenessId,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      r1 = #{r1,jdbcType=VARCHAR},
+      r2 = #{r2,jdbcType=VARCHAR},
+      r3 = #{r3,jdbcType=VARCHAR},
+      r4 = #{r4,jdbcType=VARCHAR},
+      r5 = #{r5,jdbcType=VARCHAR}
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </update>
+</mapper>

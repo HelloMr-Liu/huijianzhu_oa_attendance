@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huijianzhu.attendance.mapper.TblOaLoginMapper">
+  <resultMap id="BaseResultMap" type="com.huijianzhu.attendance.entity.TblOaLogin">
+    <id column="LOGIN_ID" jdbcType="CHAR" property="loginId" />
+    <result column="BRANCH_ID" jdbcType="CHAR" property="branchId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+    <result column="LOGIN_PWD" jdbcType="VARCHAR" property="loginPwd" />
+    <result column="RANDOM_KEY" jdbcType="VARCHAR" property="randomKey" />
+    <result column="USER_ROLE" jdbcType="CHAR" property="userRole" />
+    <result column="JOB_NUM" jdbcType="INTEGER" property="jobNum" />
+    <result column="DEPT" jdbcType="INTEGER" property="dept" />
+    <result column="IS_LOCKED" jdbcType="BIT" property="isLocked" />
+    <result column="IS_DELETED" jdbcType="BIT" property="isDeleted" />
+    <result column="CREATE_USER_ID" jdbcType="CHAR" property="createUserId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LOGIN_ID, BRANCH_ID, "NAME", LOGIN_NAME, LOGIN_PWD, RANDOM_KEY, USER_ROLE, JOB_NUM, 
+    DEPT, IS_LOCKED, IS_DELETED, CREATE_USER_ID, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_oa_login
+    where LOGIN_ID = #{loginId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tbl_oa_login
+    where LOGIN_ID = #{loginId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.huijianzhu.attendance.entity.TblOaLogin">
+    insert into tbl_oa_login (LOGIN_ID, BRANCH_ID, "NAME", 
+      LOGIN_NAME, LOGIN_PWD, RANDOM_KEY, 
+      USER_ROLE, JOB_NUM, DEPT, 
+      IS_LOCKED, IS_DELETED, CREATE_USER_ID, 
+      CREATE_TIME)
+    values (#{loginId,jdbcType=CHAR}, #{branchId,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, 
+      #{loginName,jdbcType=VARCHAR}, #{loginPwd,jdbcType=VARCHAR}, #{randomKey,jdbcType=VARCHAR}, 
+      #{userRole,jdbcType=CHAR}, #{jobNum,jdbcType=INTEGER}, #{dept,jdbcType=INTEGER}, 
+      #{isLocked,jdbcType=BIT}, #{isDeleted,jdbcType=BIT}, #{createUserId,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huijianzhu.attendance.entity.TblOaLogin">
+    insert into tbl_oa_login
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginId != null">
+        LOGIN_ID,
+      </if>
+      <if test="branchId != null">
+        BRANCH_ID,
+      </if>
+      <if test="name != null">
+        "NAME",
+      </if>
+      <if test="loginName != null">
+        LOGIN_NAME,
+      </if>
+      <if test="loginPwd != null">
+        LOGIN_PWD,
+      </if>
+      <if test="randomKey != null">
+        RANDOM_KEY,
+      </if>
+      <if test="userRole != null">
+        USER_ROLE,
+      </if>
+      <if test="jobNum != null">
+        JOB_NUM,
+      </if>
+      <if test="dept != null">
+        DEPT,
+      </if>
+      <if test="isLocked != null">
+        IS_LOCKED,
+      </if>
+      <if test="isDeleted != null">
+        IS_DELETED,
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginId != null">
+        #{loginId,jdbcType=CHAR},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPwd != null">
+        #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="randomKey != null">
+        #{randomKey,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null">
+        #{userRole,jdbcType=CHAR},
+      </if>
+      <if test="jobNum != null">
+        #{jobNum,jdbcType=INTEGER},
+      </if>
+      <if test="dept != null">
+        #{dept,jdbcType=INTEGER},
+      </if>
+      <if test="isLocked != null">
+        #{isLocked,jdbcType=BIT},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huijianzhu.attendance.entity.TblOaLogin">
+    update tbl_oa_login
+    <set>
+      <if test="branchId != null">
+        BRANCH_ID = #{branchId,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        "NAME" = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPwd != null">
+        LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="randomKey != null">
+        RANDOM_KEY = #{randomKey,jdbcType=VARCHAR},
+      </if>
+      <if test="userRole != null">
+        USER_ROLE = #{userRole,jdbcType=CHAR},
+      </if>
+      <if test="jobNum != null">
+        JOB_NUM = #{jobNum,jdbcType=INTEGER},
+      </if>
+      <if test="dept != null">
+        DEPT = #{dept,jdbcType=INTEGER},
+      </if>
+      <if test="isLocked != null">
+        IS_LOCKED = #{isLocked,jdbcType=BIT},
+      </if>
+      <if test="isDeleted != null">
+        IS_DELETED = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where LOGIN_ID = #{loginId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huijianzhu.attendance.entity.TblOaLogin">
+    update tbl_oa_login
+    set BRANCH_ID = #{branchId,jdbcType=CHAR},
+      "NAME" = #{name,jdbcType=VARCHAR},
+      LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR},
+      RANDOM_KEY = #{randomKey,jdbcType=VARCHAR},
+      USER_ROLE = #{userRole,jdbcType=CHAR},
+      JOB_NUM = #{jobNum,jdbcType=INTEGER},
+      DEPT = #{dept,jdbcType=INTEGER},
+      IS_LOCKED = #{isLocked,jdbcType=BIT},
+      IS_DELETED = #{isDeleted,jdbcType=BIT},
+      CREATE_USER_ID = #{createUserId,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where LOGIN_ID = #{loginId,jdbcType=CHAR}
+  </update>
+</mapper>
