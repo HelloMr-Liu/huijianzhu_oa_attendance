@@ -51,7 +51,7 @@ public interface TblOaLoginExtendMapper extends TblOaLoginMapper {
                 " from  oa_user_expand oue  "   ,
                 " left join tbl_oa_login tol        on tol.LOGIN_ID=oue.user_id  "   ,
                 " left join oa_attendance_file oaf  on oue.user_id=oaf.uniqueness_id  "   ,
-                " where oue.operating_state!=#{def.userState} and oaf.file_type=#{def.fileType}  "   ,
+                " where  oue.operating_state!=#{def.userState} and oaf.file_type=#{def.fileType} and  tol.IS_DELETED=#{delFlag}    "   ,
                 " order by oue.update_time desc",
             " </script>"
     })
