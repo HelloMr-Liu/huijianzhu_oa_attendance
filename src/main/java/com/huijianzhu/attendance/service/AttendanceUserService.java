@@ -30,6 +30,12 @@ public interface AttendanceUserService {
 
 
     /**
+     * 判断人员是否变动信息
+     * @return
+     */
+    public SystemResult personnelChangesNumber();
+
+    /**
      * 修改考勤用户操作状态(正常)
      * @param userIds
      * @return

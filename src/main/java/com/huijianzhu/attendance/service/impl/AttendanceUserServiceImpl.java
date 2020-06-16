@@ -19,7 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 描述：操作考勤人员信息业务接口实现
@@ -94,6 +96,18 @@ public class AttendanceUserServiceImpl implements AttendanceUserService {
         List<AttendanceUserDTO> all = tblOaLoginExtendMapper.findAll(query, GLOBAL_TABLE_FILED_STATE.NO_DEL.KEY);
         return SystemResult.ok(all);
     }
+
+
+    /**
+     * 判断人员是否变动信息
+     * @return
+     */
+    public SystemResult personnelChangesNumber(){
+        //获取当前考勤人员状态信息
+        int changeNumber = tblOaLoginExtendMapper.changeOfStatisticians(OA_USER_EXPAND_TABLE_STATE.NORMAL_STATE.KEY);
+        return SystemResult.ok(changeNumber);
+    }
+
 
     /**
      * 修改考勤用户操作状态(正常)

@@ -47,11 +47,19 @@ public interface TblOaLoginExtendMapper extends TblOaLoginMapper {
 //            })
     @Select({
             "<script>"   ,
-                " select  tol.LOGIN_ID staffId,tol.NAME name,tol.DEPT deptId,oaf.base_data1 faceData,oaf.base_data2 baseData2,oue.operating_state status  "   ,
+                " select  tol.LOGIN_ID staffId,tol.NAME name,tol.DEPT deptId,oaf.base_data1 faceData,oaf.base_data2 baseData2,  "   ,
+                " (" +
+                    "CASE oue.operating_state  " ,
+                        "WHEN 'ADD' THEN '1'" ,
+                        "WHEN 'UPDATE' THEN '2'" ,
+                        "WHEN 'DEL' THEN '3'" ,
+                    "ELSE 3" ,
+                    "END" ,
+                "  ) status ",
                 " from  oa_user_expand oue  "   ,
                 " left join tbl_oa_login tol        on tol.LOGIN_ID=oue.user_id  "   ,
                 " left join oa_attendance_file oaf  on oue.user_id=oaf.uniqueness_id  "   ,
-                " where  oue.operating_state!=#{def.userState} and oaf.file_type=#{def.fileType} and  tol.IS_DELETED=#{delFlag}    "   ,
+                " where  oue.operating_state!=#{def.userState} and oaf.file_type=#{def.fileType} "   ,
                 " order by oue.update_time desc",
             " </script>"
     })
@@ -73,4 +81,11 @@ public interface TblOaLoginExtendMapper extends TblOaLoginMapper {
     })
     List<AttendanceUserDTO> findAll(@Param("def") AtttendanceUserQueryDefinition query, String delFlag);
 
+    /**
+     * 判断是否有对考勤人员信息就行操作
+     * @param operatingState 操作状态
+     * @return
+     */
+    @Select("select count(*) from oa_user_expand where operating_state!=#{operatingState}")
+    int changeOfStatisticians(String operatingState);
 }

@@ -2,6 +2,7 @@ package com.huijianzhu.attendance.service;
 
 import com.huijianzhu.attendance.vo.SystemResult;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
@@ -30,10 +31,10 @@ public interface EquipmentService {
 
     /**
      * 设备下线
-     * @param equipCode 设备标识
+     * @param token
      * @return
      */
-    public SystemResult offline(String equipCode);
+    public SystemResult offline(String token);
 
 
     /**
@@ -41,7 +42,14 @@ public interface EquipmentService {
      * @param token
      * @return
      */
-    public SystemResult deviceResponseState(String token);
+    public SystemResult heartbeat(String token);
+
+    /**
+     * 获取人员变动的数量
+     * @param token
+     * @return
+     */
+    public SystemResult personnelCount(String token);
 
     /**
      * 设备同步成功响应操作

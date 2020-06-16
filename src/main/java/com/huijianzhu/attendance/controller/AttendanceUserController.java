@@ -23,7 +23,7 @@ import javax.validation.Valid;
 @Validated
 @RestController
 @SuppressWarnings("all")
-@RequestMapping("/user")
+@RequestMapping("/labour/gate")
 public class AttendanceUserController {
 
     /**
@@ -37,7 +37,7 @@ public class AttendanceUserController {
      * @param query
      * @return
      */
-    @PostMapping("/find/all/query")
+    @PostMapping("/personnelList")
     public SystemResult findAllQuery(@Valid  AtttendanceUserQueryDefinition query){
         SystemResult allQuery = attendanceUserService.findAllQuery(query);
         return allQuery;
@@ -48,7 +48,7 @@ public class AttendanceUserController {
      * @param query
      * @return
      */
-    @PostMapping("/find/all")
+    @PostMapping("/managerPersonList")
     public SystemResult findAll(@Valid  AtttendanceUserQueryDefinition query){
         SystemResult allQuery = attendanceUserService.findAll(query);
         return allQuery;

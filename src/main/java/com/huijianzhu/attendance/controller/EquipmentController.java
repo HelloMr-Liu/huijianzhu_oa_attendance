@@ -22,7 +22,7 @@ import java.util.List;
 @Slf4j
 @Validated
 @RestController
-@RequestMapping("/equipment")
+@RequestMapping("/labour/gate")
 @SuppressWarnings("all")
 public class EquipmentController {
 
@@ -55,25 +55,38 @@ public class EquipmentController {
 
     /**
      * 设备下线
-     * @param equipCode 设备标识
+     * @param token
      * @return
      */
-    @PostMapping("/offline")
-    public SystemResult offline(@NotBlank(message = "没有设备编号") String equipCode){
-        SystemResult systemResult = equipmentService.offline(equipCode);
+    @PostMapping("/Offline")
+    public SystemResult offline(@NotBlank(message = "没有设备编号") String token){
+        SystemResult systemResult = equipmentService.offline(token);
         return systemResult;
     }
 
     /**
      * 设备请求心跳响应机制状态操作
-     * @param equipCode
+     * @param token
      * @return
      */
-    @PostMapping("/device/sesponse")
-    public SystemResult deviceResponseState(@NotBlank(message = "没有验证标识")  String token){
-        SystemResult systemResult = equipmentService.deviceResponseState(token);
+    @PostMapping("/receiveHeartBeat")
+    public SystemResult heartbeat(@NotBlank(message = "没有验证标识")  String token){
+        SystemResult systemResult = equipmentService.heartbeat(token);
         return systemResult;
     }
+
+
+    /**
+     * 获取人员变动的数量
+     * @param token
+     * @return
+     */
+    @PostMapping("/personnelCount")
+    public SystemResult personnelCount(@NotBlank(message = "没有验证标识")  String token){
+        SystemResult systemResult = equipmentService.personnelCount(token);
+        return systemResult;
+    }
+
 
     /**
      * 设备同步成功响应操作

@@ -22,7 +22,7 @@ import javax.validation.Valid;
 @Validated
 @RestController
 @SuppressWarnings("all")
-@RequestMapping("/clock")
+@RequestMapping("/labour/gate")
 public class UserClockController {
 
     /**
@@ -36,7 +36,7 @@ public class UserClockController {
      * @param definition 封装对应的用户打卡信息
      * @return
      */
-    @PostMapping("/user/clock")
+    @PostMapping("/entryRecord")
     public SystemResult userClock(@Valid  AttendanceUserClockDefinition definition){
         SystemResult systemResult = userClockService.userClock(definition);
         return  systemResult;
