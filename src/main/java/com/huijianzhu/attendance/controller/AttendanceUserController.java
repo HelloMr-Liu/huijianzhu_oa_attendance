@@ -1,6 +1,5 @@
 package com.huijianzhu.attendance.controller;
 
-import com.huijianzhu.attendance.definition.AttendanceUserClockDefinition;
 import com.huijianzhu.attendance.definition.AtttendanceUserQueryDefinition;
 import com.huijianzhu.attendance.service.AttendanceUserService;
 import com.huijianzhu.attendance.vo.SystemResult;
@@ -48,7 +47,7 @@ public class AttendanceUserController {
      * @param query
      * @return
      */
-    @PostMapping("/managerPersonList")
+    @PostMapping("/syncPersonnelCount")
     public SystemResult findAll(@Valid  AtttendanceUserQueryDefinition query){
         SystemResult allQuery = attendanceUserService.findAll(query);
         return allQuery;

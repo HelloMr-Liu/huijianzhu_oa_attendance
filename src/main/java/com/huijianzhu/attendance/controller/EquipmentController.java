@@ -1,5 +1,7 @@
 package com.huijianzhu.attendance.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.huijianzhu.attendance.definition.SynchronizUserDefinition;
 import com.huijianzhu.attendance.service.EquipmentService;
 import com.huijianzhu.attendance.vo.SystemResult;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,7 +77,6 @@ public class EquipmentController {
         return systemResult;
     }
 
-
     /**
      * 获取人员变动的数量
      * @param token
@@ -87,15 +88,21 @@ public class EquipmentController {
         return systemResult;
     }
 
-
     /**
      * 设备同步成功响应操作
      * @param userIds 存储对应同步成功的用户id
      * @return
      */
-    @PostMapping("/device/synchroniz")
-    public SystemResult deviceSynchronization(String[] userIds){
-        SystemResult systemResult = equipmentService.deviceSynchronization(Arrays.asList(userIds));
+    @PostMapping("/personnelSyncCallback")
+    public SystemResult deviceSynchronization(String token,String jsonData){
+        List<SynchronizUserDefinition> newJsonData= JSON.parseArray(jsonData,SynchronizUserDefinition.class);
+        List<String > userIdsList=new ArrayList<>();
+        for(SynchronizUserDefinition user:newJsonData){
+            if(Boolean.valueOf(user.getIsFinish())){
+                userIdsList.add(user.getStaffId());
+            }
+        }
+        SystemResult systemResult = equipmentService.deviceSynchronization(token,userIdsList);
         return systemResult;
     }
 

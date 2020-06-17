@@ -122,10 +122,14 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     /**
      * 设备同步成功响应操作
-     * @param userIds 存储对应同步成功的用户id
      * @return
      */
-    public SystemResult deviceSynchronization(List<String> userIds){
+    public SystemResult deviceSynchronization(String token,List<String> userIds){
+        //校验对应的标识是否有效
+        if(!cacheManager.check(token)){
+            //验证标识失效
+            return SystemResult.build(SYSTEM_RESULT_STATE.LOGIN_FAILURE.KEY,"设备验证标识失效");
+        }
         //异步调用考勤用户修改操作
         try{
             new Thread(()->{

@@ -53,8 +53,7 @@ public interface EquipmentService {
 
     /**
      * 设备同步成功响应操作
-     * @param userIds 存储对应同步成功的用户id
      * @return
      */
-    public SystemResult deviceSynchronization(List<String>userIds);
+    public SystemResult deviceSynchronization(String token,List<String> userIds);
 }
