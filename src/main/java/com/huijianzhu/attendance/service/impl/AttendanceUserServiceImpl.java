@@ -74,6 +74,12 @@ public class AttendanceUserServiceImpl implements AttendanceUserService {
             //当前有分页条件开启分页插件
             PageHelper.startPage(query.getPageNo(),query.getPageSize());
             List<AttendanceUserDTO> allByQuery = tblOaLoginExtendMapper.findAllByQuery(query, GLOBAL_TABLE_FILED_STATE.NO_DEL.KEY);
+            allByQuery.forEach(
+                    e->{
+                        e.setStatus("1");
+                        e.setEntry(true);
+                    }
+            );
             //创建分页信息对象
             PageInfo<AttendanceUserDTO> info=new PageInfo<>(allByQuery);
             return SystemResult.ok(info.getList());
@@ -91,12 +97,33 @@ public class AttendanceUserServiceImpl implements AttendanceUserService {
      * @return
      */
     public SystemResult findAll(AtttendanceUserQueryDefinition query){
+
+        //开启分页启动主键
+        PageHelper.startPage(query.getPageNo(),query.getPageSize());
+
         //补充查询条件
         query.setFileType(ATTENDANCE_FILE_TABLE_STATE.FILE_TYPE_1.KEY);  //默认是用户入职信息
         List<AttendanceUserDTO> all = tblOaLoginExtendMapper.findAll(query, GLOBAL_TABLE_FILED_STATE.NO_DEL.KEY);
-        return SystemResult.ok(all);
+        all.forEach(
+            e->{
+                e.setStatus("1");
+                e.setEntry(true);
+            }
+        );
+
+        //封装对应的结果及信息
+        PageInfo<AttendanceUserDTO> pageInfo=new PageInfo<>(all);
+        return SystemResult.ok(pageInfo.getList());
     }
 
+    /**
+     * 统计人员数量
+     * @return
+     */
+    public SystemResult countMemberNumber(){
+        int i = tblOaLoginExtendMapper.countMemberNumber(ATTENDANCE_FILE_TABLE_STATE.FILE_TYPE_1.KEY, GLOBAL_TABLE_FILED_STATE.NO_DEL.KEY);
+        return SystemResult.ok(i);
+    }
 
     /**
      * 判断人员是否变动信息
@@ -116,8 +143,10 @@ public class AttendanceUserServiceImpl implements AttendanceUserService {
      */
     @Transactional(rollbackFor = Exception.class)
     public SystemResult updateAttendanceUserState(List<String> userIds){
-        //批量修改用户操作状态信息(正常)
-        expandExtendMapper.batchUpdateUserState(userIds,OA_USER_EXPAND_TABLE_STATE.NORMAL_STATE.KEY);
+        if(userIds.size()>0){
+            //批量修改用户操作状态信息(正常)
+            expandExtendMapper.batchUpdateUserState(userIds,OA_USER_EXPAND_TABLE_STATE.NORMAL_STATE.KEY);
+        }
         return SystemResult.ok();
     }
 }

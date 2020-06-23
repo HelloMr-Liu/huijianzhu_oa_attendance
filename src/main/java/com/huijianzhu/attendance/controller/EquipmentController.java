@@ -77,16 +77,6 @@ public class EquipmentController {
         return systemResult;
     }
 
-    /**
-     * 获取人员变动的数量
-     * @param token
-     * @return
-     */
-    @PostMapping("/personnelCount")
-    public SystemResult personnelCount(@NotBlank(message = "没有验证标识")  String token){
-        SystemResult systemResult = equipmentService.personnelCount(token);
-        return systemResult;
-    }
 
     /**
      * 设备同步成功响应操作

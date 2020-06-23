@@ -30,6 +30,13 @@ public interface AttendanceUserService {
 
 
     /**
+     * 统计人员数量
+     * @return
+     */
+    public SystemResult countMemberNumber();
+
+
+    /**
      * 判断人员是否变动信息
      * @return
      */

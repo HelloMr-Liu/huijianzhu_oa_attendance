@@ -76,10 +76,25 @@ public interface TblOaLoginExtendMapper extends TblOaLoginMapper {
         "<script>"   ,
             "select oaf.base_data1 faceData,tol.NAME name,tol.LOGIN_ID staffId ",
             "from oa_attendance_file oaf  left join tbl_oa_login tol on  tol.LOGIN_ID=oaf.uniqueness_id  ",
-            "where tol.IS_DELETED=#{delFlag} and oaf.file_type=#{def.fileType} ",
+            "where tol.IS_DELETED=#{delFlag} and oaf.file_type=#{def.fileType} order by oaf.create_time desc ",
         " </script>"
     })
     List<AttendanceUserDTO> findAll(@Param("def") AtttendanceUserQueryDefinition query, String delFlag);
+
+    /**
+     * 统计人员数量
+     * @param delFlag
+     * @return
+     */
+    @Select({
+            "<script>"   ,
+            "select count(file_id) ",
+            "from oa_attendance_file oaf  left join tbl_oa_login tol on  tol.LOGIN_ID=oaf.uniqueness_id  ",
+            "where tol.IS_DELETED=#{delFlag} and oaf.file_type=#{fileType}  order by oaf.create_time desc ",
+            " </script>"
+    })
+    int countMemberNumber(String fileType,String delFlag);
+
 
     /**
      * 判断是否有对考勤人员信息就行操作

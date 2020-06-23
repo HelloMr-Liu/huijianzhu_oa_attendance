@@ -60,4 +60,7 @@ public class AttendanceUserDTO {
      * 用户状态  (ADD,UPDATE,DELETE)
      */
     private String status;
+
+
+    private boolean isEntry;
 }
